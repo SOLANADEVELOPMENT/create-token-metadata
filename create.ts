@@ -35,7 +35,7 @@ import bs58 from 'bs58';
     const metadata: TokenMetadata = {
         mint: mint.publicKey,
         name: 'Bitcoin Solana OK',
-        symbol: 'BSLDDD',
+        symbol: 'BTCSOLOK',
         uri: 'https://raw.githubusercontent.com/solana-developers/opos-asset/main/assets/DeveloperPortal/metadata.json',
         additionalMetadata: [['new-field', 'new-value']],
     };
@@ -108,4 +108,7 @@ import bs58 from 'bs58';
     );
     const sig = await sendAndConfirmTransaction(connection, mintTransaction, [payer, mint]);
     console.log('Signature:', sig);
+
+    console.log('##################### Mint Address:', mint.publicKey.toBase58());
+    console.log('##################### View Mint Address:', `https://explorer.solana.com/address/${mint.publicKey.toBase58()}?cluster=devnet`);
 })();
