@@ -38,8 +38,8 @@ import bs58 from 'bs58';
 
     const metadata: TokenMetadata = {
         mint: mint.publicKey,
-        name: 'Bitcoin Solana OK',
-        symbol: 'BTCSOLOK',
+        name: 'Bitcoin DeFi Solana',
+        symbol: 'BTCPT',
         uri: 'https://raw.githubusercontent.com/solana-developers/opos-asset/main/assets/DeveloperPortal/metadata.json',
         additionalMetadata: [['new-field', 'new-value']],
     };
@@ -117,6 +117,7 @@ import bs58 from 'bs58';
     console.log('##################### View Mint Address:', `https://explorer.solana.com/address/${mint.publicKey.toBase58()}?cluster=devnet`);
 
 
+    // Create account and mint tokens to account
     const tokenSupply = 21_000_000;
     const amount = tokenSupply * 10 ** decimals;
     const recipient = Keypair.generate();
