@@ -15,6 +15,10 @@ import {
     LENGTH_SIZE,
     TOKEN_2022_PROGRAM_ID,
     TYPE_SIZE,
+    ASSOCIATED_TOKEN_PROGRAM_ID,
+    getAssociatedTokenAddressSync,
+    createAssociatedTokenAccountInstruction,
+    createMintToInstruction
 } from '@solana/spl-token';
 import type { TokenMetadata } from '@solana/spl-token-metadata';
 import {
@@ -111,4 +115,60 @@ import bs58 from 'bs58';
 
     console.log('##################### Mint Address:', mint.publicKey.toBase58());
     console.log('##################### View Mint Address:', `https://explorer.solana.com/address/${mint.publicKey.toBase58()}?cluster=devnet`);
+
+
+    const tokenSupply = 21_000_000;
+    const amount = tokenSupply * 10 ** decimals;
+    const recipient = Keypair.generate();
+
+      // Sender token account address
+    const sourceTokenAccount = getAssociatedTokenAddressSync(
+        mint.publicKey,
+        payer.publicKey,
+        false,
+        TOKEN_2022_PROGRAM_ID,
+        ASSOCIATED_TOKEN_PROGRAM_ID
+    );
+
+    const destinationTokenAccount = getAssociatedTokenAddressSync(
+        mint.publicKey,
+        recipient.publicKey,
+        false,
+        TOKEN_2022_PROGRAM_ID,
+        ASSOCIATED_TOKEN_PROGRAM_ID
+    );
+
+    const transaction = new Transaction().add(
+        createAssociatedTokenAccountInstruction(
+        payer.publicKey,
+        sourceTokenAccount,
+        payer.publicKey,
+        mint.publicKey,
+        TOKEN_2022_PROGRAM_ID,
+        ASSOCIATED_TOKEN_PROGRAM_ID
+      ),
+      createAssociatedTokenAccountInstruction(
+        payer.publicKey,
+        destinationTokenAccount,
+        recipient.publicKey,
+        mint.publicKey,
+        TOKEN_2022_PROGRAM_ID,
+        ASSOCIATED_TOKEN_PROGRAM_ID
+      ),
+      createMintToInstruction(
+        mint.publicKey,
+        sourceTokenAccount,
+        payer.publicKey,
+        amount,
+        [],
+        TOKEN_2022_PROGRAM_ID
+      )
+    );
+
+    const txSig = await sendAndConfirmTransaction(
+      connection,
+      transaction,
+      [payer],
+      { skipPreflight: true }
+    );
 })();
