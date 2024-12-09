@@ -1,0 +1,35 @@
+{
+  "dependencies": {
+    "@solana/buffer-layout": "^4.0.0",
+    "@solana/buffer-layout-utils": "^0.2.0",
+    "@solana/spl-token": "^0.4.9",
+    "@solana/spl-token-group": "^0.0.7",
+    "@solana/spl-token-metadata": "^0.1.6",
+    "bs58": "^6.0.0",
+    "buffer": "^6.0.3"
+  },
+  "devDependencies": {
+    "@solana/codecs-strings": "2.0.0",
+    "@solana/spl-memo": "0.2.5",
+    "@solana/web3.js": "^1.95.8",
+    "@types/chai": "^5.0.1",
+    "@types/chai-as-promised": "^8.0.1",
+    "@types/mocha": "^10.0.10",
+    "@types/node": "^22.10.1",
+    "@types/node-fetch": "^2.6.12",
+    "@typescript-eslint/eslint-plugin": "^8.4.0",
+    "@typescript-eslint/parser": "^8.4.0",
+    "chai": "^5.1.2",
+    "chai-as-promised": "^8.0.1",
+    "eslint": "^8.57.0",
+    "eslint-plugin-require-extensions": "^0.1.1",
+    "gh-pages": "^6.2.0",
+    "mocha": "^11.0.1",
+    "process": "^0.11.10",
+    "shx": "^0.3.4",
+    "start-server-and-test": "^2.0.8",
+    "ts-node": "^10.9.2",
+    "typedoc": "^0.27.3",
+    "typescript": "^5.7.2"
+  }
+}
