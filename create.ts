@@ -55,6 +55,8 @@ import bs58 from 'bs58';
     //     signature: airdropSignature,
     //     ...(await connection.getLatestBlockhash()),
     // });
+    const balance = await connection.getBalance(payer.publicKey); // Fetch the balance
+    console.log('##################### Your Solana Balance:', balance / LAMPORTS_PER_SOL);
 
     const mintLamports = await connection.getMinimumBalanceForRentExemption(mintLen + metadataLen);
     const mintTransaction = new Transaction().add(
