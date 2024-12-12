@@ -8,6 +8,9 @@
     "bs58": "^6.0.0",
     "buffer": "^6.0.3"
   },
+  "scripts": {
+    "dev": "ts-node create.ts"
+  },
   "devDependencies": {
     "@solana/codecs-strings": "2.0.0",
     "@solana/spl-memo": "0.2.5",
