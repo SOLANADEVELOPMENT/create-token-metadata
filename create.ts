@@ -50,11 +50,20 @@ import bs58 from 'bs58';
 
     const connection = new Connection(clusterApiUrl('devnet'), 'confirmed');
 
-    // const airdropSignature = await connection.requestAirdrop(payer.publicKey, 2 * LAMPORTS_PER_SOL);
-    // await connection.confirmTransaction({
-    //     signature: airdropSignature,
-    //     ...(await connection.getLatestBlockhash()),
-    // });
+    const solanaBalance = await connection.getBalance(payer.publicKey);
+    console.log('##################### Your Solana Balance:', solanaBalance / LAMPORTS_PER_SOL);
+    try {
+        console.log('Requesting airdrop...');
+        const airdropSignature = await connection.requestAirdrop(payer.publicKey, 2 * LAMPORTS_PER_SOL);
+        console.log('Airdrop requested. Waiting for confirmation...');
+        await connection.confirmTransaction({
+            signature: airdropSignature,
+            ...(await connection.getLatestBlockhash()),
+        });
+        console.log('Airdrop confirmed.');
+    } catch (error) {
+        console.error('Error requesting airdrop:', error);
+    }
     const balance = await connection.getBalance(payer.publicKey); // Fetch the balance
     console.log('##################### Your Solana Balance:', balance / LAMPORTS_PER_SOL);
 
