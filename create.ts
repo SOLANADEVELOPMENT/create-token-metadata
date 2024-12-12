@@ -124,8 +124,8 @@ import bs58 from 'bs58';
     const sig = await sendAndConfirmTransaction(connection, mintTransaction, [payer, mint]);
     console.log('Signature:', sig);
 
-    console.log('##################### Mint Address:', mint.publicKey.toBase58());
-    console.log('##################### View Mint Address:', `https://explorer.solana.com/address/${mint.publicKey.toBase58()}?cluster=devnet`);
+    console.log('##################### 🔥🔥🔥 Mint Address:', mint.publicKey.toBase58());
+    console.log('##################### 🔥🔥🔥 View Mint Address:', `https://explorer.solana.com/address/${mint.publicKey.toBase58()}?cluster=devnet`);
 
 
     // Create account and mint tokens to account
