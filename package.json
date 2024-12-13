@@ -9,7 +9,8 @@
     "buffer": "^6.0.3"
   },
   "scripts": {
-    "dev": "ts-node create.ts"
+    "create-token": "ts-node create.ts",
+    "check-network": "ts-node check_network.ts"
   },
   "devDependencies": {
     "@solana/codecs-strings": "2.0.0",
