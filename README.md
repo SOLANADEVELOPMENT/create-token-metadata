@@ -10,3 +10,9 @@ yarn install
 ```
 ts-node create.ts
 ```
+
+# Check network
+
+```
+ts-node check_network.ts
+```
