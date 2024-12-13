@@ -8,15 +8,23 @@ import { Cluster } from '@solana/web3.js';
 
 import config from './config.json';
 import bs58 from 'bs58';
+const CONFIRMATION_LEVEL = 'confirmed';
 
 (async () => {
-    const bufferprivateKey = Buffer.from(bs58.decode(config.privateKey));
-    const payer = Keypair.fromSecretKey(new Uint8Array(bufferprivateKey));
+    const bufferPrivateKey = Buffer.from(bs58.decode(config.privateKey));
+    const payer            = Keypair.fromSecretKey(new Uint8Array(bufferPrivateKey));
+    const connection       = new Connection(clusterApiUrl(config.network as Cluster), CONFIRMATION_LEVEL);
+    const solanaBalance    = await connection.getBalance(payer.publicKey);
 
-    const connection = new Connection(clusterApiUrl(config.network as Cluster), 'confirmed');
+    console.log(
+        '##################### Your Solana Balance:', solanaBalance / LAMPORTS_PER_SOL
+    );
+    console.log(
+        '##################### Your Network:', config.network
+    );
 
-    const solanaBalance = await connection.getBalance(payer.publicKey);
-    console.log('##################### Your Solana Balance:', solanaBalance / LAMPORTS_PER_SOL);
-    console.log('##################### Your Network:', config.network);
+    console.log(
+        "##################### Current wallet", payer.publicKey.toBase58()
+    )
 
 })();
