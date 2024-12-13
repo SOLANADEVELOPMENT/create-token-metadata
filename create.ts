@@ -20,6 +20,7 @@ import {
     createAssociatedTokenAccountInstruction,
     createMintToInstruction
 } from '@solana/spl-token';
+import { Cluster } from '@solana/web3.js';
 import type { TokenMetadata } from '@solana/spl-token-metadata';
 import {
     createInitializeInstruction,
@@ -38,8 +39,8 @@ import bs58 from 'bs58';
 
     const metadata: TokenMetadata = {
         mint: mint.publicKey,
-        name: 'Bitcoin DeFi Solana',
-        symbol: 'BTCPT',
+        name: 'Pnut Solana',
+        symbol: 'PnutSol',
         uri: 'https://raw.githubusercontent.com/solana-developers/opos-asset/main/assets/DeveloperPortal/metadata.json',
         additionalMetadata: [['new-field', 'new-value']],
     };
@@ -48,7 +49,7 @@ import bs58 from 'bs58';
 
     const metadataLen = TYPE_SIZE + LENGTH_SIZE + pack(metadata).length;
 
-    const connection = new Connection(clusterApiUrl('devnet'), 'confirmed');
+    const connection = new Connection(clusterApiUrl(config.network as Cluster), 'confirmed');
 
     const solanaBalance = await connection.getBalance(payer.publicKey);
     console.log('##################### Your Solana Balance:', solanaBalance / LAMPORTS_PER_SOL);
@@ -125,7 +126,7 @@ import bs58 from 'bs58';
     console.log('Signature:', sig);
 
     console.log('##################### 🔥🔥🔥 Mint Address:', mint.publicKey.toBase58());
-    console.log('##################### 🔥🔥🔥 View Mint Address:', `https://explorer.solana.com/address/${mint.publicKey.toBase58()}?cluster=devnet`);
+    console.log('##################### 🔥🔥🔥 View Mint Address:', `https://explorer.solana.com/address/${mint.publicKey.toBase58()}?cluster=${config.network}`);
 
 
     // Create account and mint tokens to account
