@@ -17,18 +17,30 @@ const CONFIRMATION_LEVEL = 'confirmed';
     const solanaBalance    = await connection.getBalance(payer.publicKey);
 
     console.log(
-        '##################### Your Solana Balance:', solanaBalance / LAMPORTS_PER_SOL
+        '##################### Your Solana Balance:', formatBalance(solanaBalance)
     );
     console.log(
         '##################### Your Network:', config.network
     );
 
     console.log(
-        "##################### Current wallet", payer.publicKey.toBase58()
+        "##################### Current wallet", getCurrentAddressByPayer(payer)
     )
 
     console.log(
-        "##################### Current RPC", clusterApiUrl(config.network as Cluster)
+        "##################### Current RPC", getCurrentRpcByNetwork(config.network)
     )
 
 })();
+
+function formatBalance(balance: number) {
+    return balance / LAMPORTS_PER_SOL;
+}
+
+function getCurrentAddressByPayer(payer: Keypair) {
+    return payer.publicKey.toBase58();
+}
+
+function getCurrentRpcByNetwork(network: string) {
+    return clusterApiUrl(network as Cluster);
+}
