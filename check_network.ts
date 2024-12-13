@@ -27,4 +27,8 @@ const CONFIRMATION_LEVEL = 'confirmed';
         "##################### Current wallet", payer.publicKey.toBase58()
     )
 
+    console.log(
+        "##################### Current RPC", clusterApiUrl(config.network as Cluster)
+    )
+
 })();
