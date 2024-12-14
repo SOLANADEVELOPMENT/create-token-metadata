@@ -17,9 +17,6 @@ const CONFIRMATION_LEVEL = 'confirmed';
     const solanaBalance    = await connection.getBalance(payer.publicKey);
 
     console.log(
-        '##################### Your Solana Balance:', formatBalance(solanaBalance)
-    );
-    console.log(
         '##################### Your Network:', config.network
     );
 
@@ -28,8 +25,13 @@ const CONFIRMATION_LEVEL = 'confirmed';
     )
 
     console.log(
+        '##################### Your Solana Balance:', formatBalance(solanaBalance)
+    );
+
+    console.log(
         "##################### Current RPC", getCurrentRpcByNetwork(config.network)
     )
+    
 
 })();
 
